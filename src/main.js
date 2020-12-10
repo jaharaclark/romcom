@@ -82,6 +82,10 @@ function generateUserCover() {
   displayTitle.innerHTML = userTitle;
   displayDescriptor1.innerHTML = userDescriptor1;
   displayDescriptor2.innerHTML = userDescriptor2;
+
+  covers.push(userCover);
+  titles.push(userTitle);
+  descriptors.push(userDescriptor1, userDescriptor2)
 }
 
 // We've provided one function to get you started
