@@ -12,6 +12,10 @@ var displayDescriptor2 = document.querySelector('.tagline-2')
 var formView = document.querySelector('.form-view');
 var homeView = document.querySelector('.home-view');
 var savedView = document.querySelector('.saved-view');
+var inputCover = document.querySelector('.user-cover');
+var inputTitle = document.querySelector('.user-title');
+var inputDescriptor1 = document.querySelector('.user-desc1');
+var inputDescriptor2 = document.querySelector('.user-desc2');
 
 // We've provided a few variables below
 var savedCovers = [
@@ -25,7 +29,8 @@ homeBtn.addEventListener('click', goHome);
 // saveCoverBtn.addEventListener('click', FUNCTION);
 viewSavedCoverBtn.addEventListener('click', seeSavedCovers);
 makeNewCoverBtn.addEventListener('click', goToMakeCoverInputPage);
-// makeMyBookBtn.addEventListener('click', FUNCTION)
+makeMyBookBtn.addEventListener('click', generateUserCover)
+makeMyBookBtn.addEventListener('click', goHome)
 
 // Create your event handlers and other functions here 👇
 function showNewCover() {
@@ -62,6 +67,21 @@ function goHome() {
   formView.classList.add('hidden');
   savedView.classList.add('hidden');
   saveCoverBtn.classList.remove('hidden');
+}
+
+function generateUserCover() {
+  event.preventDefault();
+  var userCover = inputCover.value
+  var userTitle = inputTitle.value
+  var userDescriptor1 = inputDescriptor1.value
+  var userDescriptor2 = inputDescriptor2.value
+
+  currentCover = new Cover (userCover, userTitle, userDescriptor1, userDescriptor2)
+
+  displayCover.src = userCover;
+  displayTitle.innerHTML = userTitle;
+  displayDescriptor1.innerHTML = userDescriptor1;
+  displayDescriptor2.innerHTML = userDescriptor2;
 }
 
 // We've provided one function to get you started
