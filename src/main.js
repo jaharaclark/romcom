@@ -18,11 +18,13 @@ var inputDescriptor1 = document.querySelector('.user-desc1');
 var inputDescriptor2 = document.querySelector('.user-desc2');
 var savedCoversSection = document.querySelector('.saved-covers-section')
 
+
 // We've provided a few variables below
 var savedCovers = [];
 var currentCover;
 
 // Add your event listeners here 👇
+// window.addEventListener('load', showNewCover)
 newRandomCoverBtn.addEventListener('click', showNewCover)
 homeBtn.addEventListener('click', goHome);
 saveCoverBtn.addEventListener('click', saveCover);
@@ -31,7 +33,7 @@ makeNewCoverBtn.addEventListener('click', goToMakeCoverInputPage);
 makeMyBookBtn.addEventListener('click', generateUserCover)
 makeMyBookBtn.addEventListener('click', goHome)
 savedView.addEventListener('dblclick', deleteCover)
-
+homeView.addEventListener('unload', showNewCover)
 
 // Create your event handlers and other functions here 👇
 function showNewCover() {
@@ -57,8 +59,8 @@ function goToMakeCoverInputPage() {
 }
 
 function seeSavedCovers() {
-  savedView.classList.remove('hidden')
-  formView.classList.add('hidden')
+  savedView.classList.remove('hidden');
+  formView.classList.add('hidden');
   homeView.classList.add('hidden');
   newRandomCoverBtn.classList.add('hidden');
   saveCoverBtn.classList.add('hidden');
@@ -66,7 +68,7 @@ function seeSavedCovers() {
   savedCoversSection.innerHTML = "";
   for (var i = 0; i < savedCovers.length; i++) {
       savedCoversSection.innerHTML += `
-      <section class="main-cover" id="${savedCovers[i].id}">
+      <section class="main-cover mini-cover" id="${savedCovers[i].id}">
         <img class="cover-image" src=${savedCovers[i].cover}>
         <h2 class="cover-title">${savedCovers[i].title}</h2>
         <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
@@ -124,6 +126,7 @@ function saveCover() {
     savedCovers.push(currentCover);
   }
 }
+
 
 
 // We've provided one function to get you started
