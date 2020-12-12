@@ -30,6 +30,8 @@ viewSavedCoverBtn.addEventListener('click', seeSavedCovers);
 makeNewCoverBtn.addEventListener('click', goToMakeCoverInputPage);
 makeMyBookBtn.addEventListener('click', generateUserCover)
 makeMyBookBtn.addEventListener('click', goHome)
+savedView.addEventListener('dblclick', deleteCover)
+
 
 // Create your event handlers and other functions here 👇
 function showNewCover() {
@@ -64,7 +66,7 @@ function seeSavedCovers() {
   savedCoversSection.innerHTML = "";
   for (var i = 0; i < savedCovers.length; i++) {
       savedCoversSection.innerHTML += `
-      <section class="main-cover">
+      <section class="main-cover" id="${savedCovers[i].id}">
         <img class="cover-image" src=${savedCovers[i].cover}>
         <h2 class="cover-title">${savedCovers[i].title}</h2>
         <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span> and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
@@ -73,8 +75,20 @@ function seeSavedCovers() {
       </section>
       `
     }
-
 }
+
+function deleteCover(){
+  if(event.target.closest('section')) {
+    var selectedCover = event.target.closest('section')
+    for (var i = 0; i < savedCovers.length; i++) {
+      if (savedCovers[i].id === Number(selectedCover.id)) {
+        savedCovers.splice(i, 1)
+      }
+    }
+    seeSavedCovers()
+  }
+}
+
 
 
 function goHome() {
