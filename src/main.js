@@ -30,6 +30,8 @@ viewSavedCoverBtn.addEventListener('click', seeSavedCovers);
 makeNewCoverBtn.addEventListener('click', goToMakeCoverInputPage);
 makeMyBookBtn.addEventListener('click', generateUserCover)
 makeMyBookBtn.addEventListener('click', goHome)
+savedView.addEventListener('dblclick', deleteCover)
+
 
 // Create your event handlers and other functions here 👇
 function showNewCover() {
@@ -73,8 +75,20 @@ function seeSavedCovers() {
       </section>
       `
     }
-
 }
+
+// function deleteCover(){
+//   if(event.target.closest('.main-cover')) {
+//     var selectedCover = event.target.closest('.main-cover')
+//     for (var i = 0; i < savedCovers.length; i++) {
+//       if (savedCovers[i].id === Number(selectedCover.id)) {
+//         savedCovers.splice(i, 1)
+//       }
+//     }
+//     seeSavedCovers()
+//   }
+// }
+
 
 
 function goHome() {
