@@ -24,7 +24,7 @@ var savedCovers = [];
 var currentCover;
 
 // Add your event listeners here 👇
-// window.addEventListener('load', showNewCover)
+window.addEventListener('load', showNewCover)
 newRandomCoverBtn.addEventListener('click', showNewCover)
 homeBtn.addEventListener('click', goHome);
 saveCoverBtn.addEventListener('click', saveCover);
