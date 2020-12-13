@@ -48,9 +48,8 @@ function generateUserCover() {
   event.preventDefault();
 
   preventEmptyCover();
-
-  if (preventEmptyCover()) {
-    return alert('It looks like your cover might be missing a thing or two. Make sure every input is filled and try again.');
+  if(preventEmptyCover()){
+    return alert('It looks like your cover might be missing a thing or two. Please enter all of the necessary information and try again.')
   }
 
   var userCover = inputCover.value
@@ -65,9 +64,9 @@ function generateUserCover() {
   displayDescriptor1.innerHTML = userDescriptor1;
   displayDescriptor2.innerHTML = userDescriptor2;
 
-  covers.push(userCover);
-  titles.push(userTitle);
-  descriptors.push(userDescriptor1, userDescriptor2)
+  pushToArray(userCover, userTitle, userDescriptor1, userDescriptor2);
+
+  goHome();
 }
 
 function getRandomIndex(array) {
@@ -93,9 +92,15 @@ function goToMakeCoverInputPage() {
 }
 
 function preventEmptyCover(){
-  if (inputCover === '' || inputTitle === '' || inputDescriptor1 === '' || inputDescriptor2 === ''){
-    return true;
+if (inputCover.value === "" || inputTitle.value === "" || inputDescriptor1.value === "" || inputDescriptor2.value === ""){
+  return true;
   }
+}
+
+function pushToArray(userCoverA, userTitleA, userDescriptor1A, userDescriptor2A) {
+  covers.push(userCoverA);
+  titles.push(userTitleA);
+  descriptors.push(userDescriptor1A, userDescriptor2A)
 }
 
 function saveCover() {
