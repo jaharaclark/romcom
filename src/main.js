@@ -1,4 +1,3 @@
-// Create variables targetting the relevant DOM elements here 👇
 var displayCover = document.querySelector('.cover-image')
 var displayTitle = document.querySelector('.cover-title')
 var displayDescriptor1 = document.querySelector('.tagline-1')
@@ -19,22 +18,20 @@ var savedView = document.querySelector('.saved-view');
 var viewSavedCoverBtn = document.querySelector('.view-saved-button');
 
 
-// We've provided a few variables below
 var currentCover;
 var savedCovers = [];
 
-// Add your event listeners here 👇
+
 homeBtn.addEventListener('click', goHome);
 makeNewCoverBtn.addEventListener('click', goToMakeCoverInputPage);
 makeMyBookBtn.addEventListener('click', generateUserCover)
-makeMyBookBtn.addEventListener('click', goHome)
 newRandomCoverBtn.addEventListener('click', showNewCover)
 saveCoverBtn.addEventListener('click', saveCover);
 savedView.addEventListener('dblclick', deleteCover)
 viewSavedCoverBtn.addEventListener('click', seeSavedCovers);
 window.addEventListener('load', showNewCover)
 
-// Create your event handlers and other functions here 👇
+
 function deleteCover(){
   if(event.target.closest('section')) {
     var selectedCover = event.target.closest('section')
@@ -49,6 +46,13 @@ function deleteCover(){
 
 function generateUserCover() {
   event.preventDefault();
+
+  preventEmptyCover();
+
+  if (preventEmptyCover()) {
+    return alert('It looks like your cover might be missing a thing or two. Make sure every input is filled and try again.');
+  }
+
   var userCover = inputCover.value
   var userTitle = inputTitle.value
   var userDescriptor1 = inputDescriptor1.value
@@ -64,6 +68,10 @@ function generateUserCover() {
   covers.push(userCover);
   titles.push(userTitle);
   descriptors.push(userDescriptor1, userDescriptor2)
+}
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
 }
 
 function goHome() {
@@ -82,6 +90,12 @@ function goToMakeCoverInputPage() {
   newRandomCoverBtn.classList.add('hidden');
   saveCoverBtn.classList.add('hidden');
   formView.classList.remove('hidden');
+}
+
+function preventEmptyCover(){
+  if (inputCover === '' || inputTitle === '' || inputDescriptor1 === '' || inputDescriptor2 === ''){
+    return true;
+  }
 }
 
 function saveCover() {
@@ -123,9 +137,4 @@ function showNewCover() {
   displayTitle.innerHTML = newTitle;
   displayDescriptor1.innerHTML = newDescriptor1;
   displayDescriptor2.innerHTML = newDescriptor2;
-}
-
-// We've provided one function to get you started
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
 }
